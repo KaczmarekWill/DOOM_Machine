@@ -116,21 +116,21 @@ action_size = game.get_available_buttons_size() # 3 possible actions: left, righ
 learning_rate = 0.0002 # Alpha
 
 ### TRAINING HYPERPARAMETERS
-total_episodes = 1000
+total_episodes = 10000
 max_steps = 100
 batch_size = 64
 
 # Exploration parameters for epsilon greedy strategy
 max_epsilon = 1.0
 min_epsilon = 0.01
-decay_rate = 0.0001
+decay_rate = 0.00005
 
 # Q learning hyperparameters
 gamma = 0.95 # Discounting rate
 
 ### MEMORY HYPERPARAMETERS
 pretrain_length = batch_size
-memory_size = 1000000
+memory_size = 50000
 
 ### MODIFY TO FALSE TO SEE TRAINED AGENT
 training = True
@@ -477,5 +477,7 @@ with tf.Session() as sess:
                 state = next_state
 
         score = game.get_total_reward()
+        totalScore += score
         print("Score: ", score)
+    print("Average Score: ", totalScore / 100)
     game.close()
